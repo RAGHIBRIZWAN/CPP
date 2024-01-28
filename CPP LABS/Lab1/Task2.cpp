@@ -1,4 +1,5 @@
 #include <iostream>
+#include<vector>
 using namespace std;
 
 int main(){
@@ -7,7 +8,7 @@ int main(){
     char grade;
     cout<<"Enter the number of students: "<<endl;
     cin>>std;
-    int arr[std][3];
+    int arr[std][2];
     for (int i = 0; i < std; i++)
     {
         cout<<"Enter the marks of maths"<<endl;
@@ -25,28 +26,25 @@ int main(){
         
         arr[i][1] = avg;
         
-        if((total/300)*100 == 90 || (total/300)*100 >= 90){
-            cout<<"Your grade is A";
-        }
-        if((total/300)*100 == 80 || (total/300)*100 < 90){
-            cout<<"Your grade is B";
-        }
-        if((total/300)*100 == 70 || (total/300)*100 < 80){
-            cout<<"Your grade is C";
-        }
-        if((total/300)*100 == 60 || (total/300)*100 < 70){
-            cout<<"Your grade is D";
-        }
-        if((total/300)*100 < 60){
-            cout<<"Your grade is F";
+        float percentage = (static_cast<float>(total) / 300) * 100;
+
+        if (percentage >= 90) {
+            cout << "Your grade is A" << endl;
+        } else if (percentage >= 80 && percentage < 90) {
+            cout << "Your grade is B" << endl;
+        } else if (percentage >= 70 && percentage < 80) {
+            cout << "Your grade is C" << endl;
+        } else if (percentage >= 60 && percentage < 70) {
+            cout << "Your grade is D" << endl;
+        } else if (percentage < 60) {
+            cout << "Your grade is F" << endl;
         }
         
     }
     
-    for(int j = 0; j < std; j++){
-        for(int k = 0; k < 3; k++){
-            cout<<arr[j][k]<<endl;
-        }
+    for (int j = 0; j < std; j++) {
+        cout << "For Student " << j + 1 << ": ";
+        cout << "Total Marks: " << arr[j][0] << ", Average Marks: " << arr[j][1] << endl;
     }
 
-}
+}   
