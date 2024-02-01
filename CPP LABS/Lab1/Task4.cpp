@@ -1,25 +1,22 @@
 #include <iostream>
-#include <vector>
-using namespace std;
+#include <cstdlib>
 
-int main()
-{
-    vector<int> v = {1, 8, 6, 2, 5, 4, 8, 3, 7};
-    int max1 = 0, max2 = 0;
+int get_max_area(int *arr, int n) {
+    int max_area = 0;
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (v[i] > max1)
-        {
-            max2 = max1;
-            max1 = v[i];
-        }
-        else if (v[i] > max2 && v[i] != max1) {
-            max2 = v[i];
+    for (int i = 0; i < n - 1; i++) { // Change the condition for i
+        for (int j = i + 1; j < n; j++) { // Change the condition for j
+            max_area = std::max(max_area, (j - i) * std::min(arr[i], arr[j]));
         }
     }
 
-    int ans = max2 * max2;
+    return max_area;
+}
 
-    cout << "The answer is: " << ans;
+int main() {
+    int heights[9] = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+
+    std::cout << get_max_area(heights, 9) << std::endl;
+
+    return 0;
 }
