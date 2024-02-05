@@ -9,8 +9,12 @@ int GCD(int a, int b) {
     }
 }
 
-int LCM(int a, int b){
-    return (a*b) / GCD(a,b);
+int LCM(int a, int b, int currentMultiple = 1) {
+    if (currentMultiple % a == 0 && currentMultiple % b == 0) {
+        return currentMultiple;
+    } else {
+        return LCM(a, b, currentMultiple + 1);
+    }
 }
 
 int main() {
