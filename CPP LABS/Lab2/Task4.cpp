@@ -21,6 +21,7 @@ int main(){
 
     for (int i = 0; i < 5; i++)
     {
+        cout<<"Inputs of student "<<i+1<<endl;
         cout<<"Enter your Course ID: "<<endl;
         cin>>stud[i].Course_Id; 
         cout<<"Enter your Course Name: "<<endl;
