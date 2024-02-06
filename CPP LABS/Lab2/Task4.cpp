@@ -39,13 +39,14 @@ int main(){
 
     for (int i = 0; i < 5; i++)
     {
-        cout<<stud[i].Course_Id<<endl;
-        cout<<stud[i].Course_Name<<endl;
-        cout<<stud[i].Student_Id<<endl;
-        cout<<stud[i].First_Name<<endl;
-        cout<<stud[i].Last_Name<<endl;
-        cout<<stud[i].Cell_No<<endl;
-        cout<<stud[i].Email<<endl;
+        cout<<"Details of student "<<i+1<<endl;
+        cout<<"Your Course Id is: "<<stud[i].Course_Id<<endl;
+        cout<<"Your Course Name is: "<<stud[i].Course_Name<<endl;
+        cout<<"Your Student Id is: "<<stud[i].Student_Id<<endl;
+        cout<<"Your First Name is: "<<stud[i].First_Name<<endl;
+        cout<<"Your Last Name is: "<<stud[i].Last_Name<<endl;
+        cout<<"Your Cell Number is: "<<stud[i].Cell_No<<endl;
+        cout<<"Your Email is: "<<stud[i].Email<<endl;
     }
     
     
