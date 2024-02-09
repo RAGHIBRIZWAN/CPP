@@ -11,43 +11,23 @@ class Smartphone{
 
 public:
 
-    void setBrand(string brand){
+    void setData(string brand,string model,string resolution,string ram,string rom,string storage){
         Brand = brand;
-    }
-    void setModel(string model){
         Model = model;
-    }
-    void setResolution(string resolution){
         Resolution = resolution;
-    }
-    void setRAM(string ram){
         RAM = ram;
-    }
-    void setROM(string rom){
         ROM = rom;
-    }
-    void setSTORAGE(string storage){
         Storage = storage;
     }
-    void getBrand(void){
+   
+    void getData(void){
         cout<<Brand<<endl;
-    }
-    void getmodel(void){
         cout<<Model<<endl;
-    }
-    void getResolution(void){
         cout<<Resolution<<endl;
-    }
-    void getRAM(void){
         cout<<RAM<<endl;
-    }
-    void getROM(void){
         cout<<ROM<<endl;
+        cout<<Storage<<endl;        
     }
-    void getSTORAGE(void){
-        cout<<Storage<<endl;
-    }
-    
     void call(string number){
         cout<<"Making phone call to "<<number<<endl;
     }
@@ -67,18 +47,8 @@ public:
 
 int main(){
     Smartphone phone;
-    phone.setBrand("Apple");
-    phone.setModel("Iphone 14");
-    phone.setResolution("600x600");
-    phone.setRAM("4GB");
-    phone.setROM("64GB");
-    phone.setSTORAGE("100GB");
-    phone.getBrand();
-    phone.getmodel();
-    phone.getResolution();
-    phone.getRAM();
-    phone.getROM();
-    phone.getSTORAGE();
+    phone.setData("Apple","Iphone 14","600x600","4GB","64GB","100GB");
+    phone.getData();
     phone.call("03340030844");
     phone.message("03346555663","03340030844");
     phone.wifi("StormFibre");
