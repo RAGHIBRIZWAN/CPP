@@ -13,9 +13,18 @@ public:
     {
         Brand = brand;
     }
+    void getBrand(string brand)
+    {
+        cout<<Brand<<endl;
+    }
     void setShade(string shade)
     {
         Shade = shade;
+    }
+
+    void getShade(string shade)
+    {
+        cout<<Shade<<endl;
     }
     void setRefillable(bool refill)
     {
@@ -55,4 +64,6 @@ int main()
     marker.setStatus(true);
     marker.writing();
     marker.refill();
+    marker.getBrand();
+    marker.getShade();
 }
