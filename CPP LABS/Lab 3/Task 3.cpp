@@ -1,194 +1,59 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-class Calender
-{
-    int year;
-    string jan[31];
-    string feb[28];
-    string mar[31];
-    string apr[30];
-    string may[31];
-    string jun[30];
-    string jul[31];
-    string aug[31];
-    string sep[30];
-    string oct[31];
-    string nov[30];
-    string dec[31];
+class Calender {
+private:
+    int currentYear;
+    static const int months = 12;
+    static const int days = 31;
+    string ans[months][days];
 
 public:
-    void adds(int date, string month) {
-        string task;
-        cout << "Define the task: ";
-        cin >> task;
+    Calender(int year) : currentYear(year) {}
 
-        if (month == "jan") {
-            jan[date - 1] = task;
-        } else if (month == "feb") {
-            feb[date - 1] = task;
-        } else if (month == "mar") {
-            mar[date - 1] = task;
-        } else if (month == "apr") {
-            apr[date - 1] = task;
-        } else if (month == "may") {
-            may[date - 1] = task;
-        } else if (month == "jun") {
-            jun[date - 1] = task;
-        } else if (month == "jul") {
-            jul[date - 1] = task;
-        } else if (month == "aug") {
-            aug[date - 1] = task;
-        } else if (month == "sep") {
-            sep[date - 1] = task;
-        } else if (month == "oct") {
-            oct[date - 1] = task;
-        } else if (month == "nov") {
-            nov[date - 1] = task;
-        } else if (month == "dec") {
-            dec[date - 1] = task;
+    void adds(int month, int day, string task) {
+        if (month < 1 || month > 12 || day < 1 || day > 31) {
+            cout << "Invalid month or day!" << endl;
+        } else {
+            ans[month - 1][day - 1] = task;
         }
     }
 
-    void removes(int date, string month) {
-        if (month == "jan") {
-            jan[date - 1] = "";
-        } else if (month == "feb") {
-            feb[date - 1] = "";
-        } else if (month == "mar") {
-            mar[date - 1] = "";
-        } else if (month == "apr") {
-            apr[date - 1] = "";
-        } else if (month == "may") {
-            may[date - 1] = "";
-        } else if (month == "jun") {
-            jun[date - 1] = "";
-        } else if (month == "jul") {
-            jul[date - 1] = "";
-        } else if (month == "aug") {
-            aug[date - 1] = "";
-        } else if (month == "sep") {
-            sep[date - 1] = "";
-        } else if (month == "oct") {
-            oct[date - 1] = "";
-        } else if (month == "nov") {
-            nov[date - 1] = "";
-        } else if (month == "dec") {
-            dec[date - 1] = "";
+    void removes(int month, int day) {
+        if (month < 1 || month > 12 || day < 1 || day > 31) {
+            cout << "Invalid month or day!" << endl;
+        } else {
+            if (!ans[month - 1][day - 1].empty()) {
+                ans[month - 1][day - 1] = "";
+                cout << "Task deleted successfully." << endl;
+            } else {
+                cout << "No task exists on this day." << endl;
+            }
         }
     }
 
-
-    void display()
-    {
-        cout << "Tasks for Jan:" << endl;
-        for (int i = 0; i < 31; ++i)
-        {
-            if (!jan[i].empty())
-            {
-                cout << "jan " << i + 1 << ": " << jan[i] << endl;
-            }
-        }
-        cout << "Tasks for Feb:" << endl;
-        for (int i = 0; i < 28; ++i)
-        {
-            if (!feb[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << feb[i] << endl;
-            }
-        }
-        cout << "Tasks for Mar:" << endl;
-        for (int i = 0; i < 31; ++i)
-        {
-            if (!mar[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << mar[i] << endl;
-            }
-        }
-        cout << "Tasks for Apr:" << endl;
-        for (int i = 0; i < 30; ++i)
-        {
-            if (!apr[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << apr[i] << endl;
-            }
-        }
-        cout << "Tasks for May:" << endl;
-        for (int i = 0; i < 31; ++i)
-        {
-            if (!may[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << may[i] << endl;
-            }
-        }
-        cout << "Tasks for Jun:" << endl;
-        for (int i = 0; i < 30; ++i)
-        {
-            if (!jun[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << jun[i] << endl;
-            }
-        }
-        cout << "Tasks for Jul:" << endl;
-        for (int i = 0; i < 31; ++i)
-        {
-            if (!jul[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << jul[i] << endl;
-            }
-        }
-        cout << "Tasks for Aug:" << endl;
-        for (int i = 0; i < 31; ++i)
-        {
-            if (!aug[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << aug[i] << endl;
-            }
-        }
-        cout << "Tasks for Sep:" << endl;
-        for (int i = 0; i < 30; ++i)
-        {
-            if (!sep[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << sep[i] << endl;
-            }
-        }
-        cout << "Tasks for Oct:" << endl;
-        for (int i = 0; i < 31; ++i)
-        {
-            if (!oct[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << oct[i] << endl;
-            }
-        }
-        cout << "Tasks for Nov:" << endl;
-        for (int i = 0; i < 30; ++i)
-        {
-            if (!nov[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << nov[i] << endl;
-            }
-        }
-        cout << "Tasks for Dec:" << endl;
-        for (int i = 0; i < 31; ++i)
-        {
-            if (!dec[i].empty())
-            {
-                cout << "Day " << i + 1 << ": " << dec[i] << endl;
+    void display() {
+        cout << "Tasks are:" << endl;
+        for (int i = 0; i < months; i++) {
+            for (int j = 0; j < days; j++) {
+                if (!ans[i][j].empty()) {
+                    cout << "Date: " << j + 1 << "-" << i + 1 << "-" << currentYear << ": " << ans[i][j] << endl;
+                }
             }
         }
     }
 };
 
-int main()
-{
-    Calender cal;
-    cal.adds(1, "jan");
-    cal.adds(1, "feb");
-    cal.adds(2, "feb");
-    cal.adds(30, "jun");
+int main() {
+    Calender cal(2024);
+    cal.adds(1, 1, "OOP quiz");
+    cal.adds(2, 28, "MVC quiz");
     cal.display();
-    cal.removes(1,"jan");
+    cout<<"After delete"<<endl;
+    cal.removes(2, 28);
+    cal.adds(2, 28, "DLD quiz");
     cal.display();
 
+    return 0;
 }
