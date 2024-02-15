@@ -28,7 +28,7 @@ public:
 int main()
 {
     string furn[3] = {"Desk", "Chair", "Bookshelf"};
-    Office office1("Downtown", 50, furn);
+    Office office1("Karachi", 50, furn);
     cout << "Office 1:" << endl;
     office1.DisplayInfo();
     cout << endl;
