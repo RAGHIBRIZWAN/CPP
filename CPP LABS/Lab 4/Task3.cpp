@@ -3,7 +3,7 @@ using namespace std;
 
 class WeekDays
 {
-    string days[10];
+    string days[7];
     int currentDay;
 
 public:
@@ -20,43 +20,48 @@ public:
 
     WeekDays(int current)
     {
+        days[0] = "Mon";
+        days[1] = "Tue";
+        days[2] = "Wed";
+        days[3] = "Thurs";
+        days[4] = "Fri";
+        days[5] = "Sat";
+        days[6] = "Sun";
         currentDay = current;
     }
 
     void GetCurrentDay()
     {
-        for (int i = 0; i < 7; i++)
-        {
-            if (currentDay == i)
-            {
-                cout << "Current day is: " << days[i];
-            }
-        }
+        cout << "Current Day is: " << days[currentDay] << endl;
     }
 
     void GetNextDay()
     {
-        for (int i = 0; i < 7; i++)
-        {
-            if (currentDay+1 == i)
-            {
-                cout << "Current day is: " << days[i];
-            }
-        }
+        int nextDay = (currentDay + 1) % 7;
+        cout << "Next Day is: " << days[nextDay] << endl;
     }
 
     void GetPreviousDay()
     {
-        for (int i = 0; i < 7; i++)
-        {
-            if (currentDay-1 == i)
-            {
-                cout << "Current day is: " << days[i];
-            }
-        }
+        int previousDay = (currentDay - 1 + 7) % 7;
+        cout << "Previous Day is: " << days[previousDay] << endl;
+    }
+
+    void GetNthDay()
+    {
+        int n;
+        cout << "Enter the number of days from today: ";
+        cin >> n;
+        int nthDay = (currentDay + n) % 7;
+        cout << "Day after " << n << " days is: " << days[nthDay] << endl;
     }
 };
 
 int main()
 {
+    WeekDays week(6);
+    week.GetCurrentDay();
+    week.GetNextDay();
+    week.GetPreviousDay();
+    week.GetNthDay();
 }
