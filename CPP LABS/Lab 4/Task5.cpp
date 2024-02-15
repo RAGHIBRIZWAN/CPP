@@ -27,7 +27,7 @@ public:
 };
 
 int main(){
-    Office* office1 = new Office("Downtown",50);
+    Office* office1 = new Office("Karachi",50);
     office1->DisplayInfo();
     delete[] office1;
 }
