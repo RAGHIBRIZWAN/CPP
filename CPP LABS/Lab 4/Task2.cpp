@@ -15,10 +15,7 @@ class Book{
     int pagesread;
 public:
 
-    Book(){
-        pageCount = 1000;
-        pagesread = 0;
-    }
+    Book(int count = 1000,int read = 0):pageCount(count),pagesread(read){}
 
     void setvalues(string Name,string Author,string isbn){
         name = Name;
@@ -36,7 +33,7 @@ public:
             cout<<"You have finished the book"<<endl;
         }
         else if(pagesread > pageCount){
-            cout<<"There are not much pages in book";
+            cout<<"There are not much pages in book"<<endl;
         }
         else{
             cout<<"You have not finished the book"<<endl;
