@@ -9,45 +9,49 @@ class BankAccount{
     int numTransactions;
     
 public:
-    BankAccount(int accountId, double balance,int numTransactions){
-        this-> transactionHistory = new int[3];
-        transactionHistory[0] = 100;
-         transactionHistory[1] = 200;
-          transactionHistory[2] = 300;
-        this-> accountId = accountId;
-        this-> balance = balance;
-        this-> numTransactions = numTransactions;
-    }
-    
-    BankAccount(BankAccount &bank){
-        transactionHistory = new int[3];
-        accountId = bank.accountId;
-        balance = bank.balance;
-        numTransactions = bank.numTransactions;
-    }
-    
-    ~BankAccount(){
-        delete[] transactionHistory;
-    }
-    
-    void display(){
-        cout<<accountId<<endl;
-        cout<<balance<<endl;
-        cout<<numTransactions<<endl;
-        for(int i = 0; i < numTransactions; i++){
-            cout<<transactionHistory[i]<<endl;
+    BankAccount(int accountId, double balance, int numTransactions) {
+        this->accountId = accountId;
+        this->balance = balance;
+        this->numTransactions = numTransactions;
+        this->transactionHistory = new int[numTransactions];
+        for (int i = 0; i < numTransactions; i++) {
+            transactionHistory[i] = i * 100 + 100;
         }
     }
     
-    void updateTransactionHistory(int transaction){
-        delete[] transactionHistory;
-        transactionHistory = new int[transaction];
-        cout<<"Enter the transaction you want to delete";
-        for(int i = 0; i < transaction; i++){
-            cout<<"Enter transaction num"<<i+1<,endl;
-            cin>>
-              
+   BankAccount(const BankAccount &bank) {
+        this->accountId = bank.accountId;
+        this->balance = bank.balance;
+        this->numTransactions = bank.numTransactions;
+        this->transactionHistory = new int[numTransactions];
+        for (int i = 0; i < numTransactions; i++) {
+            this->transactionHistory[i] = bank.transactionHistory[i];
         }
+    }
+    
+    
+    
+    void display() {
+        cout << "Account ID: " << accountId << endl;
+        cout << "Balance: " << balance << endl;
+        cout << "Number of Transactions: " << numTransactions << endl;
+        cout << "Transaction History:" << endl;
+        for (int i = 0; i < numTransactions; i++) {
+            cout << transactionHistory[i] << endl;
+        }
+    }
+    
+    void updateTransactionHistory(int* newTransactions, int newNumTransactions) {
+        delete[] transactionHistory;
+        this->numTransactions = newNumTransactions;
+        this->transactionHistory = new int[numTransactions];
+        for (int i = 0; i < numTransactions; i++) {
+            this->transactionHistory[i] = newTransactions[i];
+        }
+    }
+    
+    ~BankAccount() {
+        delete[] transactionHistory;
     }
 };
 
@@ -59,7 +63,8 @@ int main() {
     cout<<"Display for account 2"<<endl;
     bank2.display();
     cout<<"Update transaction is called"<<endl;
-    bank1.updateTransactionHistory();
+    int newTransactions[] = {500, 600};
+    bank1.updateTransactionHistory(newTransactions, 2);
     cout<<"Display for account 1"<<endl;
     bank1.display();
     cout<<"Display for account 2"<<endl;
