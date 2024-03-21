@@ -57,6 +57,8 @@ public:
     }
 };
 
+class Enemy;
+
 class Character : public Player
 {
     int level;
@@ -91,21 +93,33 @@ public:
         }
     }
 
-    void playGame()
+    void playGame(Enemy &enemy)
     {
         Weapon weapon;
         weapon.use();
         points += 10;
+        enemy.sethealth(getHealth()-5);
+
     }
 };
 
 class Enemy
 {
+protected:
+    int health;
     int damage;
 
 public:
     Enemy() {}
-    Enemy(int damage) : damage(damage) {}
+    Enemy(int damage,int health) : damage(damage),health(health) {}
+
+    int gethealth(){
+        return health;
+    }
+
+    void sethealth(int newHealth){
+        health = newHealth;
+    }
 
     void attack(Player &player)
     {
@@ -117,9 +131,9 @@ public:
 int main()
 {
     Character player1(1, "Player1", 100, 0, "Beginner");
-    Enemy enemy(10);
+    Enemy enemy(10,100);
 
-    player1.playGame();
+    player1.playGame(enemy);
     enemy.attack(player1);
     player1.levelUp();
 
