@@ -114,7 +114,6 @@ public:
 
 int main()
 {
-    vector<int> ports = {10, 20, 30};
     vector<string> protocols = {"HTTPS", "FTP", "DNS"};
     FirewallTool fire("Medium", 100, 10, protocols);
     fire.generateList(1);
