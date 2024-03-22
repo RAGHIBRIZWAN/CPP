@@ -13,61 +13,78 @@ public:
     string getZip() const { return zip; }
     string getPhone() const { return phone; }
 
-    void setLastName( string& lname) { lastName = lname; }
-    void setFirstName( string& fname) { firstName = fname; }
-    void setAddress( string& addr) { address = addr; }
-    void setCity( string& c) { city = c; }
-    void setState( string& s) { state = s; }
-    void setZip( string& z) { zip = z; }
-    void setPhone( string& p) { phone = p; }
+    void setLastName( string lname) { lastName = lname; }
+    void setFirstName( string fname) { firstName = fname; }
+    void setAddress( string addr) { address = addr; }
+    void setCity( string c) { city = c; }
+    void setState( string s) { state = s; }
+    void setZip( string z) { zip = z; }
+    void setPhone( string p) { phone = p; }
 };
 
-class DarazCustomerData{
+class DarazCustomerData:public DarazPersonData{
 protected:
-    int customerNumber;
-    int loyaltyPoints;
+    int customerNumber=0;
+    int loyaltyPoints=0;
 public:
-    int getCustomerNumber() const { return customerNumber; }
-    int getLoyaltyPoints() const { return loyaltyPoints; }
 
     void setCustomerNumber(int num) { customerNumber = num; }
     void setLoyaltyPoints(int points) { loyaltyPoints = points; }
 
+    int getCustomerNumber() const { return customerNumber; }
+    int getLoyaltyPoints() const { return loyaltyPoints; }
 };
 
-class DarazLoyaltyProgram{
+class DarazLoyaltyProgram:public DarazCustomerData{
 public:
-    void addLoyaltyPoints(DarazCustomerData& customer, int points) {
+    void addLoyaltyPoints(int points) {
         if (points > 0) {
-            customer.setLoyaltyPoints(customer.getLoyaltyPoints() + points);
+            setLoyaltyPoints(getLoyaltyPoints() + points);
             cout << "Added " << points << " loyalty points." << endl;
         } else {
             cout << "Invalid loyalty points. Please enter a positive value." << endl;
         }
     }
 
-    void redeemLoyaltyPoints(DarazCustomerData& customer, int points) {
-        if (points > 0 && points <= customer.getLoyaltyPoints()) {
-            customer.setLoyaltyPoints(customer.getLoyaltyPoints() - points);
+    void redeemLoyaltyPoints(int points) {
+        if (points > 0 && points <= getLoyaltyPoints()) {
+            setLoyaltyPoints(getLoyaltyPoints() - points);
             cout << "Redeemed " << points << " loyalty points." << endl;
         } else {
             cout << "Invalid loyalty points. Please enter a positive value and make sure you have enough points." << endl;
         }
     }
 
-    void displayTotalLoyaltyPoints(const DarazCustomerData& customer) {
-        cout << "Total loyalty points: " << customer.getLoyaltyPoints() << endl;
+    void displayTotalLoyaltyPoints() {
+        cout << "Total loyalty points: " << getLoyaltyPoints() << endl;
     }
 };
 
 int main(){
     DarazCustomerData customer;
-    customer.setCustomerNumber(123);
-    customer.setLoyaltyPoints(50);
+    customer.setFirstName("Raghib");
+    cout << "First Name: " << customer.getFirstName() << endl;
+    customer.setLastName("Rizwan");
+    cout << "Last Name: " << customer.getLastName() << endl;
+    customer.setCity("Karachi");
+    cout << "City: " << customer.getCity() << endl;
+    customer.setAddress("Nazimabad");
+    cout << "Address: " << customer.getAddress() << endl;
+    customer.setPhone("0123456789");
+    cout << "Phone: " << customer.getPhone() << endl;
+    customer.setState("Pakistan");
+    cout << "State: " << customer.getState() << endl;
+    customer.setZip("0123");
+    cout << "Zip: " << customer.getZip() << endl;
+
 
     DarazLoyaltyProgram loyalty;
-    loyalty.addLoyaltyPoints(customer,50);
-    loyalty.displayTotalLoyaltyPoints(customer);
-    loyalty.redeemLoyaltyPoints(customer,40);
-    loyalty.displayTotalLoyaltyPoints(customer);
+    loyalty.setCustomerNumber(123);
+    loyalty.setLoyaltyPoints(50);
+    loyalty.addLoyaltyPoints(50);
+    loyalty.displayTotalLoyaltyPoints();
+    loyalty.redeemLoyaltyPoints(40);
+    loyalty.displayTotalLoyaltyPoints();
+
+    return 0;
 }
