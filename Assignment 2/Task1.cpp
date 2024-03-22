@@ -43,12 +43,11 @@ class FirewallTool : public SecurityTool
     vector<string> Protocols;
 
 public:
-    FirewallTool(string level, int cost, int numDevices, vector<int> &Ports, vector<string> &Protocols) : SecurityTool(level, cost, numDevices), Ports(Ports), Protocols(Protocols) {}
+    FirewallTool(string level, int cost, int numDevices, vector<string> &Protocols) : SecurityTool(level, cost, numDevices), Protocols(Protocols) {}
 
     void generateList(int studentID)
     {
-        int digit = (studentID % 100) / 10; // Assuming studentID is at least 10 digits long
-        int startPort = digit + 1;          // Start from the next number
+        int startPort = studentID + 1;          // Start from the next number
         for (int i = startPort; i < startPort + 23; ++i)
         {
             Ports.push_back(i);
@@ -58,15 +57,57 @@ public:
     {
         if (securityLevel == "High")
         {
-            cout << "Allowing traffic from ports and protocols list only" << endl;
+            cout<<"PORTS: "<<endl;
+            for (int i = 0; i < Ports.size(); i++)
+            {
+                cout<<Ports[i]<<endl;
+            }
+            cout<<"PROTOCOLS: "<<endl;
+            for (int i = 0; i < Protocols.size(); i++)
+            {
+                cout<<Protocols[i]<<endl;
+            }
+            // cout << "Allowing traffic from ports and protocols list only" << endl;
         }
         else if (securityLevel == "Medium")
         {
-            cout << "Allowing traffic from ports and protocols list and next two ports in sequence" << endl;
+            cout<<"PORTS: "<<endl;
+            for (int i = 0; i < Ports.size(); i++)
+            {   
+                cout<<Ports[i]<<endl;
+            }
+            for (int i = Ports.size()-1; i < Ports.size(); i++)
+            {
+                cout<<Ports[i]+1<<endl;
+            }
+
+            cout<<"PROTOCOLS: "<<endl;
+            for (int i = 0; i < Protocols.size(); i++)
+            {
+                cout<<Protocols[i]<<endl;
+            }
+            
+            // cout << "Allowing traffic from ports and protocols list and next two ports in sequence" << endl;
+
         }
         else if (securityLevel == "Low")
         {
-            cout << "Allowing traffic from ports and protocols list and next 5 ports in sequence, TCP, and DNS protocol" << endl;
+            cout<<"PORTS: "<<endl;
+            for (int i = 0; i < Ports.size(); i++)
+            {   
+                cout<<Ports[i]<<endl;
+            }
+            for (int i = Ports.size()-1; i < Ports.size()+3; i++)
+            {
+                cout<<Ports[i]+1<<endl;
+            }
+
+            cout<<"PROTOCOLS: "<<endl;
+            for (int i = 0; i < Protocols.size(); i++)
+            {
+                cout<<Protocols[i]<<endl;
+            }
+            // cout << "Allowing traffic from ports and protocols list and next 5 ports in sequence, TCP, and DNS protocol" << endl;
         }
     }
 };
@@ -75,7 +116,7 @@ int main()
 {
     vector<int> ports = {10, 20, 30};
     vector<string> protocols = {"HTTPS", "FTP", "DNS"};
-    FirewallTool fire("High", 100, 10, ports, protocols);
+    FirewallTool fire("Medium", 100, 10, protocols);
+    fire.generateList(1);
     fire.performScan();
-    fire.generateList(1234567891);
 }
