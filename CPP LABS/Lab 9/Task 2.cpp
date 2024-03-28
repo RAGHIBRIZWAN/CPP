@@ -21,18 +21,16 @@ class Circle:public Shape{
 public:
     Circle(){}
     Circle(double r):r(r){}
-    double area(){
-        cout<<"The area of circle is: ";
+    double area() const{
         return pi*r*r;
     }
-    double perimeter(){
-        cout<<"The perimeter of circle is: ";
+    double perimeter() const{
         return 2*pi*r;
     }
-    void displayProperties(){
+    void displayProperties() const{
         cout<<"AREA: "<<area()<<endl;
         cout<<"PERIMETER: "<<perimeter()<<endl;
-        cout<<"DIAMETER: "<< r*2;
+        cout<<"DIAMETER: "<< r*2<<endl;
     }
 
 };
@@ -42,18 +40,16 @@ class Rectangle:public Shape{
 public:
     Rectangle(){}
     Rectangle(double L,double W):L(L),W(W){}
-    double area(){
-        cout<<"The area of rectangle is: ";
+    double area() const{
         return L*W;
     }
-    double perimeter(){
-        cout<<"The perimeter of rectangle is: ";
+    double perimeter() const{
         return 2*(L+W);
     }
-    void displayProperties(){
+    void displayProperties() const{
         cout<<"AREA: "<<area()<<endl;
         cout<<"PERIMETER: "<<perimeter()<<endl;
-        cout<<"DIAGONAL: "<<sqrt((L*L)+(W*W));
+        cout<<"DIAGONAL: "<<sqrt((L*L)+(W*W))<<endl;
     }
 };
 class Square:public Shape{
@@ -61,18 +57,16 @@ class Square:public Shape{
 public:
     Square(){}
     Square(double L):L(L){}
-    double area(){
-        cout<<"The area of square is: ";
+    double area() const{
         return L*L;
     }
-    double perimeter(){
-        cout<<"The perimeter of square is: ";
+    double perimeter() const{
         return 4*(L);
     }
-    void displayProperties(){
+    void displayProperties() const{
         cout<<"AREA: "<<area()<<endl;
         cout<<"PERIMETER: "<<perimeter()<<endl;
-        cout<<"DIAGONAL: "<<sqrt(2)*L;
+        cout<<"DIAGONAL: "<<sqrt(2)*L<<endl;
     }
 };
 class Triangle:public Shape{
@@ -83,15 +77,13 @@ protected:
 public:
     Triangle(){}
     Triangle(double B,double H,double S):B(B),H(H),S(S){}
-    double perimeter(){
-        cout<<"The perimeter of rectangle is: ";
+    double perimeter() const{
         return B + H + S;
     }
-    double area(){
-        cout<<"The area of triangle is: ";
+    double area() const{
         return sqrt(perimeter()*(perimeter()-B)*(perimeter()-H)*(perimeter()-S));
     }
-    void displayProperties(){
+    void displayProperties() const{
         cout<<"AREA: "<<area()<<endl;
         cout<<"PERIMETER: "<<perimeter()<<endl; 
     }
@@ -100,11 +92,10 @@ class Equilateraltriangle:public Triangle{
 public:
     Equilateraltriangle(){}
     Equilateraltriangle(double B):Triangle(B,B,B){}
-    double area(){
-        cout<<"The area of equilateral triangle is: ";
+    double area() const{
         return B * B * B;
     }
-    void displayProperties(){
+    void displayProperties() const{
         cout<<"AREA: "<<area()<<endl;
     }
 };
@@ -123,8 +114,6 @@ int main(){
                 double radius = 5.0;
                 Circle cir(radius);
                 shp = &cir;
-                shp->area();
-                shp->perimeter();
                 shp->displayProperties(); 
                 break;
             }
@@ -132,8 +121,6 @@ int main(){
                 double L=4.0,W=5.0;
                 Rectangle rec(L,W);
                 shp = &rec;
-                shp->area();
-                shp->perimeter();
                 shp->displayProperties(); 
                 break;
             }
@@ -141,8 +128,6 @@ int main(){
                 double L=4.0;
                 Square sqr(L);
                 shp = &sqr;
-                shp->area();
-                shp->perimeter();
                 shp->displayProperties(); 
                 break;
             }
@@ -150,8 +135,6 @@ int main(){
                 double B = 4.0, H = 5.0, S = 3.0;
                 Triangle tri(B,H,S);
                 shp = &tri;
-                shp->area();
-                shp->perimeter();
                 shp->displayProperties(); 
                 break;
             }
@@ -159,8 +142,6 @@ int main(){
                 double B = 4.0;
                 Equilateraltriangle equi(B);
                 shp = &equi;
-                shp->area();
-                shp->perimeter();
                 shp->displayProperties(); 
                 break;
             }
