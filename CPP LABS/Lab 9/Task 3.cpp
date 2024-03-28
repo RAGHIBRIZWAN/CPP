@@ -23,10 +23,10 @@ public:
     FullTimeEmployee(double monthlySalary,int employeeID,string employeeName):Employee(employeeID,employeeName){
         this->monthlySalary = monthlySalary;
     }
-    virtual double calculatePay() const{
+     double calculatePay() const{
         return monthlySalary;
     }
-    virtual void displayDetails() const{
+    void displayDetails() const{
         cout<<"Employee ID: "<<employeeID<<endl;
         cout<<"Employee Name: "<<employeeName<<endl;
         cout<<"Monthly Salary: "<<monthlySalary<<endl;
@@ -40,10 +40,10 @@ public:
         this->hourlyWage = hourlyWage;
         this->hours = hours;
     }
-    virtual double calculatePay() const{
+     double calculatePay() const{
         return hourlyWage*hours;
     }
-    virtual void displayDetails() const{
+    void displayDetails() const{
         cout<<"Employee ID: "<<employeeID<<endl;
         cout<<"Employee Name: "<<employeeName<<endl;
         cout<<"Hourly Wage: "<<hourlyWage<<endl;
