@@ -14,7 +14,7 @@ public:
 
     }
     virtual void displayDetails() const{
-
+        cout<<"Employee ID: "<<employeeID;
     }
 };
 class FullTimeEmployee:public Employee{
