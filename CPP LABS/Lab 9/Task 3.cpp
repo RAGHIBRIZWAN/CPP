@@ -14,7 +14,8 @@ public:
 
     }
     virtual void displayDetails() const{
-        cout<<"Employee ID: "<<employeeID;
+        cout<<"Employee ID: "<<employeeID<<endl;
+        cout<<"Employee Name: "<<employeeName<<endl;
     }
 };
 class FullTimeEmployee:public Employee{
@@ -23,12 +24,11 @@ public:
     FullTimeEmployee(double monthlySalary,int employeeID,string employeeName):Employee(employeeID,employeeName){
         this->monthlySalary = monthlySalary;
     }
-     double calculatePay() const{
+    double calculatePay() const{
         return monthlySalary;
     }
     void displayDetails() const{
-        cout<<"Employee ID: "<<employeeID<<endl;
-        cout<<"Employee Name: "<<employeeName<<endl;
+        Employee::displayDetails();
         cout<<"Monthly Salary: "<<monthlySalary<<endl;
     }
 };
@@ -40,12 +40,11 @@ public:
         this->hourlyWage = hourlyWage;
         this->hours = hours;
     }
-     double calculatePay() const{
+    double calculatePay() const{
         return hourlyWage*hours;
     }
     void displayDetails() const{
-        cout<<"Employee ID: "<<employeeID<<endl;
-        cout<<"Employee Name: "<<employeeName<<endl;
+        Employee::displayDetails();
         cout<<"Hourly Wage: "<<hourlyWage<<endl;
         cout<<"Hours: "<<hours<<endl;
     }
@@ -59,7 +58,8 @@ int main() {
 
     cout << "\nPart Time Employee Details:" << endl;
     part.displayDetails();
-  
+
+    // Demonstrating early or static binding
     Employee* emp1 = &full;
     Employee* emp2 = &part;
 
