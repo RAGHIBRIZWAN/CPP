@@ -17,7 +17,7 @@ public:
 class l_to_g : public Convert{
 public:
     l_to_g(float val1):Convert(val1, 0){}
-    void compute() override {
+    void compute(){
         val2 = val1 * 0.264172;
         cout<<val2<<endl;
     }
@@ -26,7 +26,7 @@ public:
 class f_to_c : public Convert{
 public:
     f_to_c(float val1):Convert(val1, 0){}
-    void compute() override {
+    void compute(){
         val2 = (val1 - 32) * (5.0/9.0);
         cout<<val2<<endl;
     }
