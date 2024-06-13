@@ -11,11 +11,27 @@ void DisplayBoard(vector<vector<string>> &board)
     {
         for (int j = 0; j < board.size(); j++)
         {
-            cout << board[i][j] << "  ";
+            if (board[i][j] == ".")
+            {
+                cout << ".  ";
+            }
+            else if (board[i][j] == "o") // Color for apple
+            {
+                cout << "\x1b[31mo\x1b[0m "; // Red color
+            }
+            else if (board[i][j] == "--") // Color for snake
+            {
+                cout << "\x1b[32m--\x1b[0m "; // Green color
+            }
         }
         cout << endl;
     }
 }
+
+#define RED "\x1b[31m"
+#define GREEN "\x1b[32m"
+#define YELLOW "\x1b[33m"
+#define RESET "\x1b[0m"
 
 int main()
 {
@@ -42,7 +58,6 @@ int main()
 
     // Initial Position of snake
     board[0][0] = snake;
-    DisplayBoard(board);
 
     while (1)
     {
@@ -71,7 +86,7 @@ int main()
                 snakeX++;
             }
             else if(position == 'c'){
-                cout<<score;
+                cout<<YELLOW<<"Score is: "<<score<<RESET;
                 return 0;
             }
             // Checking if the snake eats the apple
