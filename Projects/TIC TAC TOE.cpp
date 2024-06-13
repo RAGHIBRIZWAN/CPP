@@ -121,10 +121,7 @@ int main()
             }
             cout << endl;
         }
-
-
         
-
         cout << "Select Position for player2: ";
         cin >> choose1 >> choose2;
 
