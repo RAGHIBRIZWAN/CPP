@@ -3,7 +3,7 @@
 #include <conio.h>
 #include <cstdlib>
 #include <ctime>
-#include <windows.h> // For Sleep function
+#include <windows.h>
 
 using namespace std;
 
@@ -14,7 +14,6 @@ using namespace std;
 
 void DisplayBoard(const vector<vector<string>> &board)
 {
-    // Display Board
     for (const auto &row : board)
     {
         for (const auto &cell : row)
@@ -25,10 +24,66 @@ void DisplayBoard(const vector<vector<string>> &board)
     }
 }
 
+void MoveObstacles(vector<vector<string>> &board, const string &obstacle)
+{
+    for (int i = board.size() - 1; i > 0; --i)
+    {
+        for (int j = 0; j < board[i].size(); ++j)
+        {
+            if (board[i - 1][j] == obstacle)
+            {
+                board[i][j] = obstacle;
+                board[i - 1][j] = ".";
+            }
+        }
+    }
+
+    // Clear the first row after moving obstacles down
+    for (int j = 0; j < board[0].size(); ++j)
+    {
+        if (board[0][j] == obstacle)
+        {
+            board[0][j] = ".";
+        }
+    }
+}
+
+bool CheckCollision(int carX, int carY, const vector<vector<string>> &board, const string &obstacle)
+{
+    return board[carX][carY] == obstacle;
+}
+
+void GenerateObstacle(vector<vector<string>> &board, const string &obstacle)
+{
+    int randomPos = rand() % 8;
+    board[0][randomPos] = obstacle;
+}
+
+void MoveCar(vector<vector<string>> &board, int &carX, int &carY, const string &car)
+{
+    if (_kbhit())
+    {
+        char position = _getch();
+        board[carX][carY] = ".";
+        if (position == 'd' && carY < 7)
+        {
+            carY++;
+        }
+        else if (position == 'a' && carY > 0)
+        {
+            carY--;
+        }
+        else if (position == 'c')
+        {
+            exit(0);
+        }
+
+        board[carX][carY] = car;
+    }
+}
 
 int main()
 {
-    // Initialize random seed
     srand(static_cast<unsigned>(time(0)));
 
     // Board
@@ -44,55 +99,23 @@ int main()
 
     while (true)
     {
-        // Clear screen
         system("CLS");
 
-        // Move obstacles down
-        for (int i = board.size() - 1; i > 0; --i)
-        {
-            for (int j = 0; j < board[i].size(); ++j)
-            {
-                if (board[i - 1][j] == obstacle)
-                {
-                    board[i][j] = obstacle;
-                    board[i - 1][j] = ".";
-                }
-            }
-        }
+        
+        MoveObstacles(board, obstacle);
 
-        // Generate new obstacle at random position on the top row
-        int a = rand() % 8;
-        board[0][a] = obstacle;
+        GenerateObstacle(board, obstacle);
+
+        if (CheckCollision(carX, carY, board, obstacle))
+        {
+            cout << RED << "Game Over!" << RESET << endl;
+            break;
+        }
 
         DisplayBoard(board);
 
-        // Car Motion
-        if (_kbhit())
-        {
-            char position = _getch();
-            board[carX][carY] = ".";
-            if (position == 'd' && carY < 7)
-            {
-                carY++;
-            }
-            else if (position == 'a' && carY > 0)
-            {
-                carY--;
-            }
-            else if (position == 'c')
-            {
-                return 0;
-            }
+        MoveCar(board, carX, carY, car);
 
-            // Checking if the car hits an obstacle
-            if (board[carX][carY] == obstacle)
-            {
-                cout << RED << "Game Over!" << RESET << endl;
-                return 0;
-            }
-
-            board[carX][carY] = car; // Updating car position
-        }
         Sleep(500);
     }
 
